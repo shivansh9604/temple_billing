@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MahavirpuramController;
 use App\Http\Controllers\ShreeFoundationController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\BackgroundImageController;
+use App\Http\Controllers\LiveDarshanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,26 +23,29 @@ Route::get('/background-image/{imageName}', 'BackgroundImageController@getSpecif
 
 Route::get('/home', function () {
     $admin_id = session('admin_id');
-    if($admin_id != ''){
-        return view('shreeMahavirpuramTrustHome');;
-    }else{
+    if ($admin_id != '') {
+        return view('shreeMahavirpuramTrustHome');
+        ;
+    } else {
         return view('login');
     }
-    
+
 });
 //Login Routes
 Route::get('/', function () {
     $admin_id = session('admin_id');
-    if($admin_id != ''){
-        return view('shreeMahavirpuramTrustHome');;
-    }else{
+    if ($admin_id != '') {
+        return view('shreeMahavirpuramTrustHome');
+        ;
+    } else {
         return view('login');
     }
     return view('login');
 });
 //this is a test for commit
 
-Route::get('/events',[EventsController::class, 'index']);
+Route::get('/addEvent', [EventsController::class, 'index'])->name('addEvent');
+Route::post('/addEvent', [EventsController::class, 'addEvent']);
 
 Route::post('/login/authenticate', [LoginController::class, 'authenticate'])->name('authenticate');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
@@ -54,7 +59,7 @@ Route::get('/shreeFoundation/createInvoice', [ShreeFoundationController::class, 
 Route::get('/shreeFoundation/invoiceList', [ShreeFoundationController::class, 'mainInvoiceList'])->name('shreeTrustDonaterList');
 Route::get('/shreeFoundation/invoiceDetailList/{invoice_id}', [ShreeFoundationController::class, 'detailInvoiceList'])->name('shreeTrustDonaterReciepts');
 Route::get('/shreeFoundation/viewInvoice/{invoice_id}', [ShreeFoundationController::class, 'viewInvoice'])->name('shreeTrustDonaterInvoice');
-Route::post('/shreeFoundation/addInvoice',[ShreeFoundationController::class,'addInvoice'])->name('shreeFoundationAdd');
+Route::post('/shreeFoundation/addInvoice', [ShreeFoundationController::class, 'addInvoice'])->name('shreeFoundationAdd');
 
 
 //Mahavirpuram Routes
@@ -62,5 +67,6 @@ Route::get('/mahavirpuram/createInvoice', [MahavirpuramController::class, 'creat
 Route::get('/mahavirpuram/invoiceList', [MahavirpuramController::class, 'mainInvoiceList'])->name('mahavirpuramDonaterList');
 Route::get('/mahavirpuram/invoiceDetailList/{invoice_id}', [MahavirpuramController::class, 'detailInvoiceList'])->name('mahavirpuramDonaterReciepts');
 Route::get('/mahavirpuram/viewInvoice/{invoice_id}', [MahavirpuramController::class, 'viewInvoice'])->name('mahavirpuramDonaterInvoice');
-Route::post('/mahavirpuram/addInvoice',[MahavirpuramController::class,'addInvoice'])->name('mahavirpuramAdd');
+Route::post('/mahavirpuram/addInvoice', [MahavirpuramController::class, 'addInvoice'])->name('mahavirpuramAdd');
 
+Route::get('/live-darshan', [LiveDarshanController::class, 'index'])->name('live-darshan');

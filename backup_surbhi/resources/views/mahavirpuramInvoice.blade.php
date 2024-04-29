@@ -22,6 +22,9 @@
     </div>
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+                <a class="nav-link" href="{{  url('') }}/live-darshan">Live Darshan</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{  url('') }}/addAdmin">Add Admin</a>
             </li>

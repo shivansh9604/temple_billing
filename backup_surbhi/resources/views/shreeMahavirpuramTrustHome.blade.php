@@ -62,6 +62,11 @@
         </ul>
     </div>
 </nav>
+<div class="container">
+    
+
+</div>
+
   <div class="container center-container">
     <div class="row justify-content-center">
       <div class="col-md-6">
@@ -73,7 +78,7 @@
       <div class="col-md-6">
         <div class="clickable-container" data-toggle="modal" data-target="#container2Modal">
           <img src="{{asset('assets/shree-mahavirpuram.jpg')}}" alt="Image 2" style="width: 500px; height: 350px; padding:50px">
-          <center style="padding-bottom: 50px; font-weight: 700; font-size: 20px;">Shree Mahavirpuram</center>
+          <center style="padding-bottom: 50px; font-weight: 700; font-size: 20px;">Shivaansh Mahavirpuram</center>
         </div>
       </div>
     </div>
@@ -118,6 +123,7 @@
       </div>
     </div>
   </div>
+  
 
   <!-- Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

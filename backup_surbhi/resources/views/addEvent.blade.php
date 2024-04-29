@@ -35,6 +35,9 @@
     </div>
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+                <a class="nav-link" href="{{  url('') }}/live-darshan">Live Darshan</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{  url('') }}/addAdmin">Add Admin</a>
             </li>
@@ -50,14 +53,19 @@
         <div class="card-body">
             <div class="container pb-3">
                 <h1 class="text-center mt-0"></h1>
-                    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                    <form action="{{url('/')}}/addEvent" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                        @csrf
                         <div class="form-group">
                             <label for="event_name">Event Name:</label>
-                            <input type="text" id="event_name" name="event_name"  class="form-control"  required>        
+                            <input type="text" id="name" name="name"  class="form-control"  required>        
                         </div>
                         <div class="form-group">
-                            <label for="event_date">Event Date:</label>
-                            <input type="date" id="event_date" name="event_date"  class="form-control"  required>
+                            <label for="event_date">Event Start Date:</label>
+                            <input type="date" id="start_date" name="start_date"  class="form-control"  required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event_date">Event End Date:</label>
+                            <input type="date" id="end_date" name="end_date"  class="form-control"  required>
                         </div>
                         <div class="form-group">
                             <label for="start_time">Start Time:</label> 
@@ -69,7 +77,7 @@
                         </div>
                         <div class="form-group">
                             <label for="event_description">Event Description:</label>
-                            <textarea id="event_description" name="event_description" rows="4" cols="50"  class="form-control"  required></textarea>
+                            <textarea id="description" name="description" rows="4" cols="50"  class="form-control"  required></textarea>
                         </div>
                         <center>
                             <input type="submit" value="Add Event" class = "btn btn-primary btn-lg">
@@ -84,6 +92,46 @@
 </div>
 </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+   // Assuming you've included SweetAlert library before this code
+
+// Assuming your form has an id of 'event-form'
+$('#event-form').submit(function(event) {
+    event.preventDefault(); // Prevent the form from submitting normally
+
+    // Serialize the form data
+    var formData = $(this).serialize();
+
+    // Make an AJAX request to store event data
+    $.ajax({
+        url: '/events/store',
+        type: 'POST',
+        data: formData,
+        dataType: 'json',
+        success: function(response) {
+            if (response.success) {
+                // Display success message using SweetAlert
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Event data has been stored successfully.',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 2000 // Close the alert after 2 seconds
+                });
+            } else {
+                // Handle other cases, if needed
+            }
+        },
+        error: function(xhr, status, error) {
+            // Handle error cases, if needed
+        }
+    });
+});
+
+</script>
 </body>
 </html>
 
